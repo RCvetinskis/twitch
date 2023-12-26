@@ -1,7 +1,9 @@
 "use server";
+
 import { Stream } from "@prisma/client";
-import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+
+import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
 
 export const updateStream = async (values: Partial<Stream>) => {
@@ -12,11 +14,13 @@ export const updateStream = async (values: Partial<Stream>) => {
         userId: self.id,
       },
     });
+
     if (!selfStream) {
       throw new Error("Stream not found");
     }
 
     const validData = {
+      thumbnailUrl: values.thumbnailUrl,
       name: values.name,
       isChatEnabled: values.isChatEnabled,
       isChatFollowersOnly: values.isChatFollowersOnly,
@@ -35,8 +39,9 @@ export const updateStream = async (values: Partial<Stream>) => {
     revalidatePath(`/u/${self.username}/chat`);
     revalidatePath(`/u/${self.username}`);
     revalidatePath(`/${self.username}`);
+
     return stream;
-  } catch (error) {
+  } catch {
     throw new Error("Internal Error");
   }
 };
