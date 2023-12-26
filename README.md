@@ -16,6 +16,9 @@ bun dev
 Second, go to https://dashboard.ngrok.com/cloud-edge/endpoints and copy the endpoint;
 
 Third, in  the new terminal run the command: ngrok http -(copied endpoint) 3000
+
+
 4,  open a new terminal and run npx prisma studio
+
 
 if the application is live  paste the copied endpoint to the browser. 
