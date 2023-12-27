@@ -1,15 +1,18 @@
-import { db } from "./db";
-import { getSelf } from "./auth-service";
+import { db } from "@/lib/db";
+import { getSelf } from "@/lib/auth-service";
 
 export const getRecommended = async () => {
   let userId;
+
   try {
     const self = await getSelf();
     userId = self.id;
-  } catch (error) {
+  } catch {
     userId = null;
   }
+
   let users = [];
+
   if (userId) {
     users = await db.user.findMany({
       where: {
@@ -46,9 +49,16 @@ export const getRecommended = async () => {
           },
         },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: [
+        {
+          stream: {
+            isLive: "desc",
+          },
+        },
+        {
+          createdAt: "desc",
+        },
+      ],
     });
   } else {
     users = await db.user.findMany({
@@ -59,10 +69,18 @@ export const getRecommended = async () => {
           },
         },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: [
+        {
+          stream: {
+            isLive: "desc",
+          },
+        },
+        {
+          createdAt: "desc",
+        },
+      ],
     });
   }
+
   return users;
 };

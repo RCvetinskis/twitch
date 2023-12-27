@@ -22,7 +22,7 @@ interface UserAvatarProps extends VariantProps<typeof avatarSizes> {
   isLive?: boolean;
   showBadge?: boolean;
 }
-export const UserAavatar = ({
+export const UserAvatar = ({
   username,
   imageUrl,
   isLive,

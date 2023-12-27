@@ -1,7 +1,9 @@
 "use client";
 
-import { useSiderBar } from "@/store/use-sidebar";
 import { Follow, User } from "@prisma/client";
+
+import { useSiderBar } from "@/store/use-sidebar";
+
 import { UserItem, UserItemSkeleton } from "./user-item";
 
 interface FollowingProps {
@@ -18,6 +20,7 @@ export const Following = ({ data }: FollowingProps) => {
   if (!data.length) {
     return null;
   }
+
   return (
     <div>
       {!collapsed && (

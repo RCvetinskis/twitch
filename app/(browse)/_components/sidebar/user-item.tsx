@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useSiderBar } from "@/store/use-sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { UserAavatar } from "@/components/user-avatar";
+import { UserAvatar } from "@/components/user-avatar";
 import { LiveBadge } from "@/components/live-badge";
 
 import Link from "next/link";
@@ -19,6 +19,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
   const { collapsed } = useSiderBar((state) => state);
   const href = `/${username}`;
   const isActive = pathname === href;
+
   return (
     <Button
       asChild
@@ -36,7 +37,7 @@ export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
             collapsed && "justify-center"
           )}
         >
-          <UserAavatar
+          <UserAvatar
             imageUrl={imageUrl}
             username={username}
             isLive={isLive}

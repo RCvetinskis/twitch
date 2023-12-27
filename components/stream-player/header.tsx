@@ -1,6 +1,6 @@
 "use client";
 
-import { UserAavatar, UserAvatarSkeleton } from "@/components/user-avatar";
+import { UserAvatar, UserAvatarSkeleton } from "@/components/user-avatar";
 import { VerifiedMark } from "@/components/verified-mark";
 import { Actions, ActionsSkeleton } from "@/components/stream-player/actions";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -41,7 +41,7 @@ export const Header = ({
   return (
     <div className="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 items-start justify-between px-4">
       <div className="flex items-center gap-x-3">
-        <UserAavatar
+        <UserAvatar
           imageUrl={imageUrl}
           username={hostName}
           size={"lg"}
